@@ -9,5 +9,4 @@ class Router extends Base
 
         return $this->route->findRoute($uri);
     }
-
 }

@@ -15,15 +15,34 @@ class Route
 
     public function findRoute($uri)
     {
-        foreach ($this->routes as $route) {
-
+        foreach ($this->routes as $path => $route) {
+            if ($path == $this->parseUri($uri)) {
+                list($controller, $action) = explode('@', $route);
+                $this->controller = $controller;
+                $this->action = $action;
+                return $this;
+            }
         }
+        $this->controller = 'DashController';
+        $this->action = 'index';
 
-        return [];
+        return $this;
+    }
+
+    protected function parseUri($uri)
+    {
+        return preg_replace('/^\//', '', $uri);
     }
 
     public function getRoutes()
     {
-        return array_values($this->routes);
+        return $this->routes;
+    }
+
+    public function runController()
+    {
+
+        return $this->controller;
+
     }
 }

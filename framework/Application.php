@@ -12,6 +12,9 @@ class Application extends Container
 
     public function handle($request)
     {
-        return $this['router']->dispatch($request);
+        $route = $this['router']->dispatch($request);
+        $response = $route->runController();
+
+        return $response;
     }
 }
