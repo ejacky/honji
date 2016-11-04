@@ -1,7 +1,9 @@
 <?php
 namespace Honji\Core;
 
-class Response
+use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
+
+class Response extends SymfonyResponse
 {
     public function render()
     {

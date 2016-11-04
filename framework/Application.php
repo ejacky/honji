@@ -2,6 +2,8 @@
 namespace Honji;
 
 use Pimple\Container;
+use Honji\Core\Response;
+use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
 class Application extends Container
 {
@@ -15,6 +17,20 @@ class Application extends Container
         $route = $this['router']->dispatch($request);
         $response = $route->runController();
 
+        $response = $this->prepareResponse($request, $response);
+
         return $response;
+    }
+
+    public function prepareResponse($request, $response)
+    {
+        if ($response instanceof PsrResponseInterface) {
+            $response = (new HttpFoundationFactory)->createResponse($response);
+        } elseif (! $response instanceof SymfonyResponse) {
+            $response = new Response($response);
+        }
+
+        return $response->prepare($request);
+
     }
 }

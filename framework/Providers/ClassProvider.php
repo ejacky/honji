@@ -15,7 +15,7 @@ class ClassProvider implements ServiceProviderInterface
 
     public function register(Container $container)
     {
-        $this->buildDIC($container, $this->classes);
+        //$this->buildDIC($container, $this->classes);
         return $this;
     }
 
