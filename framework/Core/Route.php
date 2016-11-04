@@ -6,6 +6,10 @@ class Route
 
     protected $routes = [];
 
+    protected $controller;
+
+    protected $action;
+
     public function addRoute($uri, $action)
     {
         $this->routes[$uri] = $action;
@@ -41,8 +45,27 @@ class Route
 
     public function runController()
     {
+        $className = $this->getControllerName();
+
+        $object = new $className;
+        $object->{$this->action}();
 
         return $this->controller;
 
+    }
+
+    protected function getControllerName()
+    {
+        $className = 'App\Controllers\\' . $this->controller;
+
+        if (! class_exists($className)) {
+            throw new \RuntimeException('Controller not found');
+        }
+
+        if (! method_exists($className, $this->action)) {
+            throw new \RuntimeException('Action not found');
+        }
+
+        return $className;
     }
 }
