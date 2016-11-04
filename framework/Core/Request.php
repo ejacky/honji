@@ -1,4 +1,6 @@
 <?php
+namespace Honji\Core;
+
 class Request
 {
     protected $query;
