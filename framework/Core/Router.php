@@ -3,8 +3,11 @@ namespace Honji\Core;
 
 class Router extends Base
 {
-    public function dispatch(Request $requeset)
+    public function dispatch(Request $request)
     {
-        return $this->route;
+        $uri = $request->getRequestUri();
+
+        return $this->route->findRoute($uri);
     }
+
 }

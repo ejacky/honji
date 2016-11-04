@@ -20,6 +20,10 @@ class Route
         }
 
         return [];
+    }
 
+    public function getRoutes()
+    {
+        return array_values($this->routes);
     }
 }
