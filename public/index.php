@@ -2,7 +2,10 @@
 require_once __DIR__ . '/../bootstrap/autoload.php';
 
 try {
-    $response = $app->handle(Honji\Core\Requset);
+    $response = $app->handle(Honji\Core\Request::capture());
+
+    var_dump($response);
+    exit;
 
     $response->render();
 

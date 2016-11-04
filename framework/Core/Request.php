@@ -1,30 +1,42 @@
 <?php
 namespace Honji\Core;
 
-class Request
+use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
+
+class Request extends SymfonyRequest
 {
-    protected $query;
-
-    protected $post;
-
-    protected $server;
-
-    protected $cookie;
-
-    protected $file;
-
-
-    public function __construct()
-    {
-        $this->query = $_GET;
-        $this->post = $_GET;
-        $this->server = $_SERVER;
-        $this->file = $_FILES;
-        $this->cookie = $_COOKIE;
-    }
 
     public static function capture()
     {
-        return [];
+        static::enableHttpMethodParameterOverride();
+
+        return static::createFromBase(SymfonyRequest::createFromGlobals());
+    }
+
+    public static function createFromBase(SymfonyRequest $request)
+    {
+        if ($request instanceof static) {
+            return $request;
+        }
+
+        $content = $request->content;
+
+        $request = (new static)->duplicate(
+
+            $request->query->all(), $request->request->all(), $request->attributes->all(),
+
+            $request->cookies->all(), $request->files->all(), $request->server->all()
+        );
+
+        $request->content = $content;
+
+        //$request->request = $request->getInputSource();
+
+        return $request;
+    }
+
+    public function duplicate(array $query = null, array $request = null, array $attributes = null, array $cookies = null, array $files = null, array $server = null)
+    {
+        return parent::duplicate($query, $request, $attributes, $cookies, array_filter((array) $files), $server);
     }
 }

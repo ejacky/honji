@@ -10,7 +10,6 @@ class ClassProvider implements ServiceProviderInterface
         'Core' => [
             'Request',
             'Response',
-            'RememberMeCookie',
         ]
     ];
 
