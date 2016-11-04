@@ -1,10 +1,10 @@
 <?php
 namespace Honji\Core;
 
-class Router
+class Router extends Base
 {
     public function dispatch(Request $requeset)
     {
-        return $this;
+        return $this->route;
     }
 }
