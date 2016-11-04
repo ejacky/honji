@@ -22,4 +22,9 @@ class Request
         $this->file = $_FILES;
         $this->cookie = $_COOKIE;
     }
+
+    public static function capture()
+    {
+        return [];
+    }
 }

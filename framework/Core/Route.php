@@ -6,13 +6,9 @@ class Route
 
     protected $routes = [];
 
-    public function addRoute($uri, $controller, $action)
+    public function addRoute($uri, $action)
     {
-        $this->routes[] = [
-            'uri' => $uri,
-            'controller' => $controller,
-            'action' => $action
-        ];
+        $this->routes[$uri] = $action;
 
         return $this;
     }

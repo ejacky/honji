@@ -4,7 +4,9 @@
     "licence": "MIT",
 
     "require": {
-        "pimple/pimple" : "3.0.2"
+        "php": ">=5.5.9",
+        "pimple/pimple" : "3.0.2",
+        "symfony/http-foundation": "2.7.*"
     },
     "autoload": {
         "classmap": ["framework/"],
