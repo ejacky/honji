@@ -1,5 +1,13 @@
 {
     "name": "ejacky/honji",
     "description": "a framework for myself",
-    "licence": "MIT"
+    "licence": "MIT",
+
+    "autoload": {
+        "classmap": ["framework/"],
+        "psr-4": {
+            "honji\\": "framework"
+        },
+        "files": []
+    }
 }
