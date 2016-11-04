@@ -13,6 +13,8 @@ class RoutingProvider implements ServiceProviderInterface
         $container['router'] = new Router($container);
         $container['route'] = new Route($container);
 
+        require_once __DIR__.'/../../routes/web.php';
+
         return $container;
     }
 }
