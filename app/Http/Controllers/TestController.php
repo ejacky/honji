@@ -10,6 +10,6 @@ class TestController
 
     public function index()
     {
-        echo "<h2>hello world!</h2>";
+        return "<h2>hello world!</h2>";
     }
 }

@@ -47,10 +47,10 @@ class Route
     {
         $className = $this->getControllerName();
 
-        $object = new $className;
-        $object->{$this->action}();
+        $instance = new $className;
+        $parameters = []; //todo
 
-        return $this->controller;
+        return call_user_func_array([$instance, $this->action], $parameters);
 
     }
 
