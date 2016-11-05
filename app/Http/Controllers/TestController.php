@@ -10,6 +10,6 @@ class TestController
 
     public function index()
     {
-        return "<h2>hello world!</h2>";
+        return $this->view->render('test');
     }
 }
