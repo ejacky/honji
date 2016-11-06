@@ -9,7 +9,7 @@ class ViewProvider implements ServiceProviderInterface
 {
     public function register(Container $container)
     {
-        $container['route'] = new View($container);
+        $container['view'] = new View($container);
 
         return $container;
     }

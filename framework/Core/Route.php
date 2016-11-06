@@ -1,7 +1,7 @@
 <?php
 namespace Honji\Core;
 
-class Route
+class Route extends Base
 {
 
     protected $routes = [];

@@ -1,7 +1,9 @@
 <?php
 namespace App\Controllers;
 
-class TestController
+use Honji\Core\View;
+
+class TestController extends Controller
 {
     public function show()
     {
@@ -10,6 +12,8 @@ class TestController
 
     public function index()
     {
-        return $this->view->render('test');
+        return View::render('test', [
+            'name' => 'jackyzhang'
+        ]);
     }
 }

@@ -2,10 +2,18 @@
 namespace Honji\Core;
 
 
-class View extends Base
+class View
 {
-    public function render()
+    public static function render($__template_name, array $__template_args = array())
     {
+        extract($__template_args);
+        ob_start();
+        include self::getTemplateFile($__template_name);
+        return ob_get_clean();
+    }
 
+    public static function getTemplateFile($template)
+    {
+        return implode(DIRECTORY_SEPARATOR, array(__DIR__, '..', '..', 'resources', 'views', $template.'.php'));
     }
 }
