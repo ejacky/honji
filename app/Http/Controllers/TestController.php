@@ -13,9 +13,18 @@ class TestController extends Controller
 
     public function index()
     {
+        $contactList = DB::getInstance('contact')->find_many();
+        $contactCount = DB::getInstance('contact')->count();
+
         return View::render('test', [
-            'name' => 'jackyzhang'
+            'contactList' => $contactList,
+            'contactCount' => $contactCount
         ]);
+    }
+
+    public function edit()
+    {
+
     }
 
     public function store()
@@ -27,7 +36,7 @@ class TestController extends Controller
             $contact->email = $_POST['email'];
 
             if ($contact->save()) {
-                echo "save success!";
+                header('/test');
             } else {
                 echo "save failure";
             }
