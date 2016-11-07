@@ -20,6 +20,17 @@ class TestController extends Controller
 
     public function store()
     {
-        DB::getInstance('test')->create([]);
+        if (! empty($_POST)) {
+            $contact = DB::getInstance('contact')->create();
+
+            $contact->name = $_POST['name'];
+            $contact->email = $_POST['email'];
+
+            if ($contact->save()) {
+                echo "save success!";
+            } else {
+                echo "save failure";
+            }
+        }
     }
 }

@@ -18,6 +18,6 @@ class DB
             self::$instance[$tableName] = ORM::for_table($tableName);
         }
 
-            return self::$instance[$tableName];
+        return self::$instance[$tableName];
     }
 }
