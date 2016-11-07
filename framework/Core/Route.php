@@ -27,15 +27,15 @@ class Route extends Base
                 return $this;
             }
         }
-        $this->controller = 'DashController';
-        $this->action = 'index';
+        $this->controller = 'TestController';
+        $this->action = 'show';
 
         return $this;
     }
 
     protected function parseUri($uri)
     {
-        return preg_replace('/^\//', '', $uri);
+        return ltrim($uri, '/');
     }
 
     public function getRoutes()
