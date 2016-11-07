@@ -1,7 +1,6 @@
 <?php
 namespace Honji\Core;
 
-
 class View
 {
     public static function render($__template_name, array $__template_args = array())
