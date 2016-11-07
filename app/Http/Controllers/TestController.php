@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use Honji\Core\View;
+use Honji\Core\DB;
 
 class TestController extends Controller
 {
@@ -19,6 +20,6 @@ class TestController extends Controller
 
     public function store()
     {
-        echo "this is store";
+        DB::getInstance('test')->create([]);
     }
 }

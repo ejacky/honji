@@ -6,6 +6,7 @@
     "require": {
         "php": ">=5.5.9",
         "pimple/pimple" : "3.0.2",
+        "j4mie/paris": "^1.5",
         "symfony/http-foundation": "2.7.*"
     },
     "autoload": {
