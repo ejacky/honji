@@ -15,7 +15,7 @@ class Application extends Container
     public function handle($request)
     {
         $route = $this['router']->dispatch($request);
-        $response = $route->runController();
+        $response = $route->send();
 
         $response = $this->prepareResponse($request, $response);
 

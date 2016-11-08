@@ -21,16 +21,28 @@ class Route extends Base
     {
         foreach ($this->routes as $path => $route) {
             if ($path == $this->parseUri($uri)) {
-                list($controller, $action) = explode('@', $route);
-                $this->controller = $controller;
-                $this->action = $action;
+                if (! is_string($route) ) {
+                    $this->runCallable($route);
+                }
+                $this->runController($route);
+
                 return $this;
             }
         }
-        $this->controller = 'TestController';
-        $this->action = 'show';
 
-        return $this;
+        throw new \Exception('找不到路由');
+    }
+
+    protected function runCallable($route)
+    {
+
+    }
+
+    protected function runController($route)
+    {
+        list($controller, $action) = explode('@', $route);
+        $this->controller = $controller;
+        $this->action = $action;
     }
 
     protected function parseUri($uri)
@@ -43,7 +55,7 @@ class Route extends Base
         return $this->routes;
     }
 
-    public function runController()
+    public function send()
     {
         $className = $this->getControllerName();
 

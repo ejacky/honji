@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use Honji\Core\View;
 use Honji\Core\DB;
+use Honji\Core\Request;
 
 class TestController extends Controller
 {
@@ -27,8 +28,10 @@ class TestController extends Controller
 
     }
 
-    public function store()
+    public function store(Request $request)
     {
+        var_dump($request);
+
         if (! empty($_POST)) {
             $contact = DB::getInstance('contact')->create();
 
