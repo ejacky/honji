@@ -30,8 +30,6 @@ class TestController extends Controller
 
     public function store(Request $request)
     {
-        var_dump($request);
-
         if (! empty($_POST)) {
             $contact = DB::getInstance('contact')->create();
 
@@ -39,7 +37,7 @@ class TestController extends Controller
             $contact->email = $_POST['email'];
 
             if ($contact->save()) {
-                header('/test');
+                header('Location:/test');
             } else {
                 echo "save failure";
             }

@@ -7,5 +7,5 @@ try {
     $response->send();
 
 } catch (Exception $e) {
-    echo "something wrong:" . $e->getMessage();
+    echo "内部错误:" . $e->getMessage();
 }

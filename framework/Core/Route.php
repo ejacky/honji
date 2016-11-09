@@ -10,6 +10,10 @@ class Route extends Base
 
     protected $action;
 
+    protected $isCallable = false;
+
+    protected $callback;
+
     public function addRoute($uri, $action)
     {
         $this->routes[$uri] = $action;
@@ -22,10 +26,13 @@ class Route extends Base
         foreach ($this->routes as $path => $route) {
             if ($path == $this->parseUri($uri)) {
                 if (! is_string($route) ) {
-                    $this->runCallable($route);
+                    $this->isCallable = true;
+                    $this->callback = $route;
+                } else {
+                    list($controller, $action) = explode('@', $route);
+                    $this->controller = $controller;
+                    $this->action = $action;
                 }
-                $this->runController($route);
-
                 return $this;
             }
         }
@@ -33,16 +40,19 @@ class Route extends Base
         throw new \Exception('找不到路由');
     }
 
-    protected function runCallable($route)
+    protected function runCallable()
     {
-
+        call_user_func($this->callback);
     }
 
-    protected function runController($route)
+    protected function runController()
     {
-        list($controller, $action) = explode('@', $route);
-        $this->controller = $controller;
-        $this->action = $action;
+        $className = $this->getControllerName();
+
+        $instance = new $className;
+        $parameters = []; //todo
+
+        call_user_func_array([$instance, $this->action], $parameters);
     }
 
     protected function parseUri($uri)
@@ -57,13 +67,11 @@ class Route extends Base
 
     public function send()
     {
-        $className = $this->getControllerName();
-
-        $instance = new $className;
-        $parameters = []; //todo
-
-        return call_user_func_array([$instance, $this->action], $parameters);
-
+        if ($this->isCallable) {
+            $this->runCallable();
+        } else {
+            $this->runController();
+        }
     }
 
     protected function getControllerName()
