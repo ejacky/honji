@@ -1,7 +1,8 @@
 <?php
-require __DIR__ . '/../vendor/autoload.php';
 
-require __DIR__ . '/../framework/Config/database.php';
+require __DIR__.'/../vendor/autoload.php';
+
+require __DIR__.'/../framework/Config/database.php';
 
 $app = new Honji\Application();
 $app->register(new Honji\Provider\RoutingProvider());

@@ -1,4 +1,5 @@
 <?php
+
 namespace Honji\Core;
 
 class Router extends Base

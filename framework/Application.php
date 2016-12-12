@@ -1,13 +1,14 @@
 <?php
+
 namespace Honji;
 
-use Pimple\Container;
 use Honji\Core\Response;
+use Pimple\Container;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
 class Application extends Container
 {
-    public function __construct(array $values = array())
+    public function __construct(array $values = [])
     {
         parent::__construct($values);
     }
@@ -25,12 +26,11 @@ class Application extends Container
     public function prepareResponse($request, $response)
     {
         if ($response instanceof PsrResponseInterface) {
-            $response = (new HttpFoundationFactory)->createResponse($response);
-        } elseif (! $response instanceof SymfonyResponse) {
+            $response = (new HttpFoundationFactory())->createResponse($response);
+        } elseif (!$response instanceof SymfonyResponse) {
             $response = new Response($response);
         }
 
         return $response->prepare($request);
-
     }
 }

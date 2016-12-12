@@ -1,9 +1,9 @@
 <?php
+
 namespace Honji\Core;
 
 class Route extends Base
 {
-
     protected $routes = [];
 
     protected $controller;
@@ -25,7 +25,7 @@ class Route extends Base
     {
         foreach ($this->routes as $path => $route) {
             if ($path == $this->parseUri($uri)) {
-                if (! is_string($route) ) {
+                if (!is_string($route)) {
                     $this->isCallable = true;
                     $this->callback = $route;
                 } else {
@@ -33,6 +33,7 @@ class Route extends Base
                     $this->controller = $controller;
                     $this->action = $action;
                 }
+
                 return $this;
             }
         }
@@ -49,7 +50,7 @@ class Route extends Base
     {
         $className = $this->getControllerName();
 
-        $instance = new $className;
+        $instance = new $className();
         $parameters = []; //todo
 
         call_user_func_array([$instance, $this->action], $parameters);
@@ -76,13 +77,13 @@ class Route extends Base
 
     protected function getControllerName()
     {
-        $className = 'App\Controllers\\' . $this->controller;
+        $className = 'App\Controllers\\'.$this->controller;
 
-        if (! class_exists($className)) {
+        if (!class_exists($className)) {
             throw new \RuntimeException('Controller not found');
         }
 
-        if (! method_exists($className, $this->action)) {
+        if (!method_exists($className, $this->action)) {
             throw new \RuntimeException('Action not found');
         }
 

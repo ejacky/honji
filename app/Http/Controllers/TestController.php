@@ -1,15 +1,16 @@
 <?php
+
 namespace App\Controllers;
 
-use Honji\Core\View;
 use Honji\Core\DB;
 use Honji\Core\Request;
+use Honji\Core\View;
 
 class TestController extends Controller
 {
     public function show()
     {
-        echo "this is show!";
+        echo 'this is show!';
     }
 
     public function index()
@@ -18,19 +19,18 @@ class TestController extends Controller
         $contactCount = DB::getInstance('contact')->count();
 
         return View::render('test', [
-            'contactList' => $contactList,
-            'contactCount' => $contactCount
+            'contactList'  => $contactList,
+            'contactCount' => $contactCount,
         ]);
     }
 
     public function edit()
     {
-
     }
 
     public function store(Request $request)
     {
-        if (! empty($_POST)) {
+        if (!empty($_POST)) {
             $contact = DB::getInstance('contact')->create();
 
             $contact->name = $_POST['name'];
@@ -39,7 +39,7 @@ class TestController extends Controller
             if ($contact->save()) {
                 header('Location:/test');
             } else {
-                echo "save failure";
+                echo 'save failure';
             }
         }
     }

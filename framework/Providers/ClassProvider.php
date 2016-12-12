@@ -1,8 +1,9 @@
 <?php
+
 namespace Honji\Provider;
 
-use Pimple\ServiceProviderInterface;
 use Pimple\Container;
+use Pimple\ServiceProviderInterface;
 
 class ClassProvider implements ServiceProviderInterface
 {
@@ -10,7 +11,7 @@ class ClassProvider implements ServiceProviderInterface
         'Core' => [
             'Request',
             'Response',
-        ]
+        ],
     ];
 
     public function register(Container $container)

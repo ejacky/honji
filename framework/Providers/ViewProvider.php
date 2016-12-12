@@ -1,9 +1,10 @@
 <?php
+
 namespace Honji\Provider;
 
-use Pimple\ServiceProviderInterface;
-use Pimple\Container;
 use Honji\Core\View;
+use Pimple\Container;
+use Pimple\ServiceProviderInterface;
 
 class ViewProvider implements ServiceProviderInterface
 {

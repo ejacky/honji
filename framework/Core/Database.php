@@ -4,14 +4,14 @@ namespace Honji\Core;
 
 use ORM;
 
-class DB
+class Database
 {
     protected static $instance;
 
     public static function getInstance($tableName)
     {
         if (is_null(self::$instance[$tableName])) {
-            $pdo = DB_DRIVE . ':' . 'host=' . DB_HOSTNAME . ';dbname=' . DB_NAME;
+            $pdo = DB_DRIVE.':'.'host='.DB_HOSTNAME.';dbname='.DB_NAME;
             ORM::configure($pdo);
             ORM::configure('username', DB_USERNAME);
             ORM::configure('password', DB_PASSWORD);

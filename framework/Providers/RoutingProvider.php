@@ -1,10 +1,11 @@
 <?php
+
 namespace Honji\Provider;
 
-use Pimple\ServiceProviderInterface;
-use Pimple\Container;
-use Honji\Core\Router;
 use Honji\Core\Route;
+use Honji\Core\Router;
+use Pimple\Container;
+use Pimple\ServiceProviderInterface;
 
 class RoutingProvider implements ServiceProviderInterface
 {
