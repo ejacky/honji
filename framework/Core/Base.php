@@ -1,4 +1,5 @@
 <?php
+
 namespace Honji\Core;
 
 use Pimple\Container;

@@ -1,11 +1,11 @@
 <?php
+
 namespace Honji\Core;
 
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
 class Request extends SymfonyRequest
 {
-
     public static function capture()
     {
         static::enableHttpMethodParameterOverride();
@@ -21,7 +21,7 @@ class Request extends SymfonyRequest
 
         $content = $request->content;
 
-        $request = (new static)->duplicate(
+        $request = (new static())->duplicate(
 
             $request->query->all(), $request->request->all(), $request->attributes->all(),
 
